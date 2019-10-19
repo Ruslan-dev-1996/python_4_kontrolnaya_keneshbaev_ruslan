@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for poll in polls %}
+        <h2>Вопрос:{{ poll.questions }}</h2>
+        <div class="comment-list">
+            <h2>Ответы:</h2>
+            <div class="choices">
+                <form action="">
+                    {% for choice in poll.polls.all %}
+                        <div class="pre">{{ choice.text }}
+                            <input type="radio" id="{{ choice.pk }}" name="box" value="{{ choice.text }}">
+                        </div>
+                    {% endfor %}
+                </form>
+                  <form method="POST" action="{% url 'answer_view'  %}">
+                    {% include 'partial/poll_form.html' with button_text="Добавить" %}
+                  </form>
+                <p class="choice-links">
+                </p>
+                <hr>
+            </div>
+            {% empty %}
+            <p>No answers yet.</p>
+
+        </div>
+    {% endfor %}
+{% endblock %}
