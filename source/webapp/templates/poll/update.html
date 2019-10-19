@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Refresh{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'poll_view' poll.pk %}">Подробнее</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Редактировать</h1>
+    <form method="POST" action="{% url 'poll_update' poll.pk %}{">
+        {% include 'partial/poll_form.html' with button_text="Редактировать" %}
+    </form>
+
+
+{% endblock %}

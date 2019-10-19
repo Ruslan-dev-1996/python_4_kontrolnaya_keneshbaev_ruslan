@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Detailed{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'poll_update' poll.pk %}">Редактор</a></li>
+    <li><a href="{% url 'poll_delete' poll.pk %}">Удалить</a></li>
+{% endblock %}
+
+{% block content %}
+
+    <p>Вопрос: {{ poll.questions }} </p>
+
+    {% for choice in poll.polls.all %}
+       <p>выбор: {{ choice.text }}</p>
+    {% endfor %}
+{% endblock %}
